@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+  	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  	<title>Documentation | Puppet Labs - Learning — Variables, Conditionals, and Facts</title>
+  	<meta name="description" content="The open source leader in data center automation">
+  	<link rel="alternate" type="text/xml" title="Puppet Labs RSS 0.92 Feed" href="http://puppetlabs.com/feed/rss/">
+  	<link rel="alternate" type="application/atom+xml" title="Puppet Labs Atom Feed" href="http://puppetlabs.com/feed/atom/">
+  	<link rel="alternate" type="application/rss+xml" title="Puppet Labs RSS 2.0 Feed" href="http://puppetlabs.com/feed/">
+  	<link rel="pingback" href="http://puppetlabs.com/xmlrpc.php">
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://puppetlabs.com/xmlrpc.php?rsd" />
+    <link rel='index' title='Puppet Labs' href='http://docs.puppetlabs.com' />
+
+<!-- Google stats -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-1537572-5");
+pageTracker._setDomainName(".puppetlabs.com");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<!-- End Google stats -->
+
+
+    <!-- FIXME: absolute paths -->
+
+    <script type='text/javascript' src='/files/javascripts/html5.js'></script>
+    <script type='text/javascript' src='/files/javascripts/jquery-1.3.2.min.js'></script>
+    <script type='text/javascript' src='/files/javascripts/drop_down.js'></script>
+    <script type='text/javascript' src='/files/javascripts/cufon-yui.js'></script>
+    <script type='text/javascript' src='/files/fonts/Klavika_400-Klavika_600.font.js'></script>
+    <script type='text/javascript' src='/files/javascripts/ampersands.js'></script>
+
+     <!--Add rotation jQuery Script -->
+	 	
+    <script type='text/javascript' src='/files/javascripts/addRotate.js'></script>
+
+    <!-- All in One SEO Pack 1.6.10.1 by Michael Torbert of Semper Fi Web Design[127,146] -->
+    <meta name="keywords" content="Puppet, puppet labs, reductive labs, open source, system administrator, ruby, data center, automation, support" />
+    <link rel="canonical" href="http://docs.puppetlabs.com" />
+    <!-- /all in one seo pack -->
+	
+    <!-- FIXME: absolute paths -->
+
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/style.css" media="screen"> 
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/syntax.css" media="screen"> <!-- index -->
+    <link rel="stylesheet" type="text/css" href="/files/stylesheets/adbanner.css" media="screen">
+
+    <!--[if IE 7]>
+	  <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_7.css" media="screen"> <!-- index -->
+    <![endif]-->
+  
+    <!--[if IE 8]>
+	    <link rel="stylesheet" type="text/css" href="/files/stylesheets/ie_8.css" media="screen"> <!-- index -->
+    <![endif]-->		
+
+  	<script type="text/javascript">
+      Cufon.replace('h1, h2', { fontWeight: '600' });
+  	</script>
+</head>
+
+
+
+        
+  <body id="puppetlabsdocs" class="docs">
+  <style type="text/css">h1, h2{ visibility : hidden }</style>		
+  <!--[if IE 8]>
+    <style type="text/css">h1, h2{ visibility : visible }</style>
+  <![endif]-->		
+
+  	<header id="header">
+      <div class="site-width">
+    		<h1><a href="http://puppetlabs.com/"><span>Puppet Labs</span></a></h1>
+        <a class="screen-reader-content" href="#content">Skip navigation</a>
+        <nav>
+    		<ul id="global-navigation">
+          <li id="puppet-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/puppet/">
+              <span>Products</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>            
+              <li>
+                <ul>
+<li class="page_item page-item-769"><a href="http://www.puppetlabs.com/puppet/puppet-enterprise/" title="Puppet Enterprise">Puppet Enterprise</a></li>
+<li class="page_item page-item-757"><a href="http://www.puppetlabs.com/puppet/introduction/" title="Puppet">Puppet</a></li>
+<li class="page_item page-item-956"><a href="http://www.puppetlabs.com/puppet/how-to-buy/" title="How to Buy">How to Buy</a></li>
+<li class="page_item page-item-1159"><a href="http://forge.puppetlabs.com/" title="Module Forge">Module Forge</a></li>
+
+<li class="page_item page-item-2415"><a href="http://www.puppetlabs.com/mcollective/introduction/" title="MCollective">MCollective</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li id="services-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/services/">
+              <span>Services</span>
+              <span class="drop-down-trigger"></span>
+
+            </a>
+            <ul>
+              <li class="page_item page-item-783"><a href="http://www.puppetlabs.com/services/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-839"><a href="http://www.puppetlabs.com/services/support/" title="Enterprise Support">Enterprise Support</a></li>
+<li class="page_item page-item-845"><a href="http://www.puppetlabs.com/services/training-workshops/" title="On-Site Training &amp; Consulting">On-Site Training &amp; Consulting</a></li>
+<li class="page_item page-item-849"><a href="/category/events/upcoming/" title="Events &amp; Public Training">Events &amp; Public Training</a></li>
+<li class="page_item page-item-851"><a href="http://www.puppetlabs.com/services/partners/" title="Partners">Partners</a></li>
+<li class="page_item page-item-1037"><a href="/resources/customer-support" title="Customer Support">Customer Support</a></li>
+            </ul>
+          </li>
+          <li id="resources-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/resources/">
+              <span>Resources</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/resources/overview-2/" title="Overview">Overview</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/resources/customer-support/" title="Customer Support">Customer Support</a></li>
+<li class="page_item page-item-1040"><a href="http://docs.puppetlabs.com" title="Documentation">Documentation</a></li>
+<li class="page_item page-item-872"><a href="http://info.puppetlabs.com/register-download" title="Downloads">Downloads</a></li>
+<li class="page_item page-item-1961"><a href="http://forge.puppetlabs.com" title="Module Forge">Module Forge</a></li>
+<li class="page_item page-item-835"><a href="http://info.puppetlabs.com/request-whitepapers.html" title="White Papers">White Papers</a></li>
+<li class="page_item page-item-1967"><a href="http://projects.puppetlabs.com/projects/puppet/wiki" title="Wiki">Wiki</a></li>
+            </ul>
+
+          </li>
+
+<li id="customer-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/customers/companies/">
+              <span>Customers</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-1048"><a href="http://www.puppetlabs.com/customers/companies/" title="Overview">Companies</a></li>
+<li class="page_item page-item-1052"><a href="http://www.puppetlabs.com/customers/case-studies/" title="Case Studies">Case Studies</a></li>
+<li class="page_item page-item-1040"><a href="http://www.puppetlabs.com/customers/product-testimonials/" title="Product Testimonials">Product Testimonials</a></li>
+<li class="page_item page-item-872"><a href="http://www.puppetlabs.com/customers/what-customers-are-saying/" title="ervice Testimonials">Service Testimonials</a></li>
+	</ul>
+          </li>
+         <li id="community-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/community/">
+              <span>Community</span>
+
+              <span class="drop-down-trigger"></span>
+            </a>
+            <ul>
+              <li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/community/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2195"><a href="http://www.puppetlabs.com/blog" title="Blog">Blog</a></li>
+<li class="page_item page-item-2264"><a href="http://www.puppetlabs.com/community/puppet-camp/" title="Puppet Camp">Puppet Camp</a></li>
+<li class="page_item page-item-2249"><a href="http://www.puppetlabs.com/community/user-groups-and-devops-groups/" title="User Groups &amp; DevOps Groups">User Groups &amp; DevOps Groups</a></li>
+<li class="page_item page-item-2215"><a href="http://www.puppetlabs.com/community/presentations/" title="Presentations">Presentations</a></li>
+
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/videos/" title="Videos">Videos</a></li>
+<li class="page_item page-item-2217"><a href="http://www.puppetlabs.com/community/badges/" title="Badges">Badges</a></li>
+            </ul>
+          </li>
+
+          <li id="company-tab" class="with-submenu">
+            <a href="http://www.puppetlabs.com/company/">
+              <span>Company</span>
+              <span class="drop-down-trigger"></span>
+            </a>
+
+            <ul>
+              <li class="page_item page-item-2316"><a href="http://www.puppetlabs.com/company/overview/" title="Overview">Overview</a></li>
+<li class="page_item page-item-2179"><a href="http://www.puppetlabs.com/company/news/" title="News">News</a></li>
+<li class="page_item page-item-1571"><a href="http://www.puppetlabs.com/company/jobs/" title="Jobs">Jobs</a></li>
+<li class="page_item page-item-2313"><a href="http://www.puppetlabs.com/company/contact-us/" title="Contact Us">Contact Us</a></li>
+            </ul>
+          </li>
+    		</ul>	   
+          <div id="misc-navigation">
+
+			  <ul>
+				<li><a href="http://docs.puppetlabs.com">Documentation</a></li>
+				<li><a href="http://puppetlabs.com/resources/customer-support/">Support</a></li>
+				<li><a href="http://projects.puppetlabs.com/">Bug Tracker</a></li>
+				<li><a href="http://puppetlabs.com/company/#contact">Contact Us</a></li>
+				<li><a href="http://puppetlabs.com/resources/downloads" class="gateway">Download</a></li>
+			  </ul>
+			<form action="http://www.google.com/cse" id="cse-search-box">
+
+			  <div>
+				<input type="hidden" name="cx" value="017884045025332504017:1mnj-dlgfcc" />
+				<input type="hidden" name="ie" value="UTF-8" />
+				<input type="text" name="q" size="31" />
+				<input type="submit" name="sa" class="searchbtn" value="Search" />
+			  </div>
+			</form>
+			<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
+
+          </div>
+      </nav>
+    	</div>
+    </header>  
+
+      <section id="masthead">
+        <div class="site-width">
+          <h1>Docs: <span class="section-name">Learning — Variables, Conditionals, and Facts</span></h1>
+          <ul id="doc-navigation">
+            <li><a href="/">Docs Home</a></li>
+            <li class="with-submenu">
+              <a href="#">
+                <span>Quick Nav</span>
+                <span class="drop-down-trigger"></span>
+              </a>
+               <!-- the following links can't be relative, unfortunately -->
+               <!-- future: add some JS to disable this if running from file:// -->
+               	            <dl>
+	              <dt>Puppet Guides</dt>
+                      <dd><a href="/index.html">Index</a></dd>
+                  <dt>Puppet References</dt>
+                      <dd><a href="/references/stable/type.html">Resource Types</a></dd>
+                      <dd><a href="/references/stable/function.html">Functions</a></dd>
+                      <dd><a href="/references/stable/metaparameter.html">Metaparameters</a></dd>
+                      <dd><a href="/references/stable/configuration.html">Configuration</a></dd>
+                      <dt>References By Version</dt>
+                      <dd><a href="/references/2.7.3/">2.7.3</a></dd>
+                      <dd><a href="/references/2.6.9/">2.6.9</a></dd>
+                      <dd><a href="/references/0.25.5/">0.25.5</a></dd>
+                      <dd><a href="/references/0.24.8/">0.24.8</a></dd>
+                      <dd><a href="/references/">Other Versions</a></dd>
+                  <dt>MCollective</dt>
+                      <dd><a href="/mcollective/index.html">Index</a></dd>
+                      <dd><a href="/mcollective/simplerpc/index.html">SimpleRPC</a></dd>
+                      <dd><a href="/mcollective/roadmap/index.html">Roadmap</a></dd>
+                      <dd><a href="/mcollective/releasenotes.html">Release Notes</a></dd>
+                      <dd><a href="/mcollective/reference/index.html">References</a></dd>
+	            </dl>
+
+            </li>
+            <li><a href="/contribute.html">Contribute</a></li>
+          </ul>
+        </div>
+      </section>
+    
+      <section id="content">
+        <div class="site-width">
+          <div class="primary-secondary-content">
+            <div class="primary-content">
+              <h1 id="learning--variables-conditionals-and-facts">Learning — Variables, Conditionals, and Facts</h1>
+
+<p>You can write manifests and order resources; now, add logic and flexibility with conditional statements and variables. </p>
+
+<hr />
+
+<p>&larr; <a href="./ordering.html">Ordering</a> &mdash; <a href="./">Index</a> &mdash; <a href="./modules1.html">Modules (Part One)</a> &rarr;</p>
+
+<hr />
+
+<h2 id="variables">Variables</h2>
+
+<p>Variables! I&rsquo;m going to bet you pretty much know this drill, so let&rsquo;s move a little faster:</p>
+
+<ul>
+  <li><code>$variables</code> always start with a dollar sign. You assign to variables with the <code>=</code> operator. </li>
+  <li>Variables can hold strings, numbers, special values (false, undef&hellip;), arrays, and hashes.</li>
+  <li>If you&rsquo;ve never assigned a variable, you can actually still use it &mdash; its value will be <code>undef</code>. (You can also explicitly assign <code>undef</code> as a value, although the use case for that is somewhat advanced.)</li>
+  <li>You can use variables as the value for any resource attribute, or as the title of a resource. </li>
+  <li>You can also interpolate variables inside strings, if you use double-quotes. To distinguish a <code>${variable}</code> from the surrounding text, you should wrap its name in curly braces.</li>
+  <li>Every variable has a short local name and a long fully-qualified name. Fully qualified variables look like <code>$scope::variable</code>. Top scope variables are the same, but their scope is nameless. (For example: <code>$::top_scope_variable</code>.)</li>
+  <li>If you reference a variable with its short name and it isn&rsquo;t present in the local scope, Puppet will also check the top scope;<sup id="fnref:dynamic"><a href="#fn:dynamic" rel="footnote">1</a></sup> this means you can effectively leave off the leading <code>::</code> on top scope variables and treat them as globals. </li>
+  <li>You can only assign the same variable <strong>once</strong> in a given scope.<sup id="fnref:declarative"><a href="#fn:declarative" rel="footnote">2</a></sup></li>
+</ul>
+
+<div class="highlight"><pre><code class="ruby">    <span class="vg">$longthing</span> <span class="o">=</span> <span class="s2">&quot;Imagine I have something really long in here. Like an SSH key, let&#39;s say.&quot;</span>
+    
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;authorized_keys&#39;</span><span class="p">:</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/root/.ssh/authorized_keys&#39;</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="vg">$longthing</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Pretty easy.</p>
+
+<h2 id="facts">Facts</h2>
+
+<p>And now, a teaspoon of magic. </p>
+
+<p>Before you even start writing your manifests, Puppet builds you a stash of pre-assigned variables. Check it out:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="c1"># hosts-simple.pp</span>
+    
+    <span class="c1"># Host type reference:</span>
+    <span class="c1"># http://docs.puppetlabs.com/references/stable/type.html#host</span>
+    
+    <span class="n">host</span> <span class="p">{</span><span class="s1">&#39;self&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>       <span class="o">=&gt;</span> <span class="n">present</span><span class="p">,</span>
+      <span class="nb">name</span>         <span class="o">=&gt;</span> <span class="vg">$:</span><span class="ss">:fqdn</span><span class="p">,</span>
+      <span class="n">host_aliases</span> <span class="o">=&gt;</span> <span class="o">[</span><span class="s1">&#39;puppet&#39;</span><span class="p">,</span> <span class="vg">$:</span><span class="ss">:hostname</span><span class="o">]</span><span class="p">,</span>
+      <span class="n">ip</span>           <span class="o">=&gt;</span> <span class="vg">$:</span><span class="ss">:ipaddress</span><span class="p">,</span>
+    <span class="p">}</span>
+    
+    <span class="n">file</span> <span class="p">{</span><span class="s1">&#39;motd&#39;</span><span class="p">:</span>
+      <span class="k">ensure</span>  <span class="o">=&gt;</span> <span class="n">file</span><span class="p">,</span>
+      <span class="n">path</span>    <span class="o">=&gt;</span> <span class="s1">&#39;/etc/motd&#39;</span><span class="p">,</span>
+      <span class="n">mode</span>    <span class="o">=&gt;</span> <span class="mo">0644</span><span class="p">,</span>
+      <span class="n">content</span> <span class="o">=&gt;</span> <span class="s2">&quot;Welcome to ${::hostname},</span><span class="se">\n</span><span class="s2">a ${::operatingsystem} island in the sea of ${::domain}.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<pre><code># puppet apply hosts-simple.pp
+
+notice: /Stage[main]//Host[puppet]/ensure: created
+notice: /Stage[main]//File[motd]/ensure: defined content as '{md5}d149026e4b6d747ddd3a8157a8c37679'
+
+# cat /etc/hosts
+# HEADER: This file was autogenerated at Mon Apr 25 14:39:11 -0700 2011
+# HEADER: by puppet.  While it can still be managed manually, it
+# HEADER: is definitely not recommended.
+# Do not remove the following line, or various programs
+# that require network functionality will fail.
+127.0.0.1	localhost.localdomain	localhost
+::1	localhost6.localdomain6	localhost6
+172.16.158.137	learn.puppet.demo     puppet  learn
+</code></pre>
+
+<p>Our manifests are starting to get versatile, with pretty much no real work on our part. </p>
+
+<h3 id="hostname-ipaddress">Hostname? IPaddress?</h3>
+
+<p>So where did those helpful variables come from? They&rsquo;re &ldquo;facts.&rdquo; Puppet ships with a tool called Facter, which ferrets out your system information, normalizes it into a set of variables, and passes them off to Puppet. The compiler then has access to those facts when it&rsquo;s reading a manifest. </p>
+
+<p>There are a lot of different facts, and the easiest way to get a list of them is to simply run <code>facter</code> at your VM&rsquo;s command line. You&rsquo;ll get back a long list of key/value pairs separated by the familiar <code>=&gt;</code> hash rocket. To use one of these facts in your manifests, just prepend a dollar sign to its name (along with a <code>::</code>, because being explicit about namespaces is a good habit).</p>
+
+<p>Most kinds of system will have at least a few facts that aren&rsquo;t available on other kinds of system (e.g., try comparing Facter&rsquo;s output on your CentOS VM to what it does on an OS X machine), and it can get fuzzier if you&rsquo;re extending Facter with <a href="/guides/custom_facts.html">custom facts</a>, but there&rsquo;s a general core of facts that give you the same info everywhere. You&rsquo;ll get a feel for them pretty quickly, and can probably guess most of them just by reading the list of names.</p>
+
+<h2 id="conditional-statements">Conditional Statements</h2>
+
+<p>Puppet has a fairly complete complement of conditional syntaxes, and the info available in facts makes it really easy to code different behavior for different systems. </p>
+
+<h3 id="if">If</h3>
+
+<p>We&rsquo;ll start with your basic <code>if</code> statement. Same as it ever was: </p>
+
+<pre><code>if condition {
+  block of code
+}
+elsif condition {
+  block of code
+}
+else {
+  block of code
+}
+</code></pre>
+
+<p>The else and any number of elsif statements are optional.</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">if</span> <span class="vg">$is_virtual</span> <span class="p">{</span>
+      <span class="n">service</span> <span class="p">{</span><span class="s1">&#39;ntpd&#39;</span><span class="p">:</span>
+        <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">stopped</span><span class="p">,</span>
+        <span class="n">enable</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">service</span> <span class="p">{</span> <span class="s1">&#39;ntpd&#39;</span><span class="p">:</span>
+        <span class="nb">name</span>       <span class="o">=&gt;</span> <span class="s1">&#39;ntpd&#39;</span><span class="p">,</span>
+        <span class="k">ensure</span>     <span class="o">=&gt;</span> <span class="n">running</span><span class="p">,</span>
+        <span class="n">enable</span>     <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="n">hasrestart</span> <span class="o">=&gt;</span> <span class="kp">true</span><span class="p">,</span>
+        <span class="nb">require</span> <span class="o">=&gt;</span> <span class="no">Package</span><span class="o">[</span><span class="s1">&#39;ntp&#39;</span><span class="o">]</span><span class="p">,</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>The blocks of code for each condition can contain any Puppet code.</p>
+
+<h4 id="what-is-false">What is False?</h4>
+
+<p>You&rsquo;ll notice I used a bare fact as the condition above. The Puppet language&rsquo;s data types are kind of loose, and a lot of things tend to get represented internally as strings, so it&rsquo;s worth mentioning that the following values will be treated as false by an if statement:</p>
+
+<ul>
+  <li><code>undef</code> (the value of an unassigned variable)</li>
+  <li><code>''</code> (the empty string)</li>
+  <li><code>false</code></li>
+  <li>Any expression that evaluates to false.</li>
+</ul>
+
+<p>In particular, be aware that 0 is true.</p>
+
+<h4 id="conditions">Conditions</h4>
+
+<p>Conditions can get pretty sophisticated: you can use any valid <a href="http://docs.puppetlabs.com/guides/language_guide.html#expressions">expression</a> in an if statement. Usually, this is going to mean using one of the standard comparison operators (<code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>), the regex match operators (<code>=~</code> and <code>!~</code>), or the <code>in</code> operator (which tests whether the right operand contains the left one).</p>
+
+<h3 id="case">Case</h3>
+
+<p>Also probably familiar: the case statement. (Or switch, or whatever your language of choice calls it.) </p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+      <span class="n">centos</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;httpd&quot;</span> <span class="p">}</span>
+      <span class="c1"># Note that these matches are case-insensitive.</span>
+      <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;httpd&quot;</span> <span class="p">}</span>
+      <span class="n">debian</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;apache2&quot;</span> <span class="p">}</span>
+      <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;apache2&quot;</span> <span class="p">}</span>
+      <span class="n">default</span><span class="p">:</span> <span class="p">{</span> <span class="nb">fail</span><span class="p">(</span><span class="s2">&quot;Unrecognized operating system for webserver&quot;</span><span class="p">)</span> <span class="p">}</span>
+      <span class="c1"># &quot;fail&quot; is a function. We&#39;ll get to those later.</span>
+    <span class="p">}</span>
+    <span class="n">package</span> <span class="p">{</span><span class="s1">&#39;apache&#39;</span><span class="p">:</span>
+      <span class="nb">name</span>   <span class="o">=&gt;</span> <span class="vg">$apache</span><span class="p">,</span>
+      <span class="k">ensure</span> <span class="o">=&gt;</span> <span class="n">latest</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Instead of testing a condition up front, <code>case</code> matches a variable against a bunch of possible values. <strong><code>default</code> is a special value,</strong> which does exactly what it sounds like. </p>
+
+<h4 id="case-matching">Case matching</h4>
+
+<p>Matches can be simple strings (like above), regular expressions, or comma-separated lists of either. </p>
+
+<p>String matching is case-insensitive, like the <code>==</code> comparison operator. Regular expressions are denoted with the slash-quoting used by Perl and Ruby; they&rsquo;re case-sensitive by default, but you can use the <code>(?i)</code> and <code>(?-i)</code> switches to turn case-insensitivity on and off inside the pattern. Regex matches also assign captured subpatterns to <code>$1</code>, <code>$2</code>, etc. inside the associated code block, with <code>$0</code> containing the whole matching string.</p>
+
+<p>Here&rsquo;s a regex example:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$ipaddress_eth0</span> <span class="p">{</span><span class="sr" />
+<span class="sr">      /^127[\d.]+$/</span><span class="p">:</span> <span class="p">{</span> 
+        <span class="n">notify</span> <span class="p">{</span><span class="s1">&#39;misconfig&#39;</span><span class="p">:</span> 
+          <span class="n">message</span> <span class="o">=&gt;</span> <span class="s2">&quot;Possible network misconfiguration: IP address of $0&quot;</span><span class="p">,</span>
+        <span class="p">}</span> 
+      <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>And here&rsquo;s the example from above, rewritten and more readable:</p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="k">case</span> <span class="vg">$operatingsystem</span> <span class="p">{</span>
+      <span class="n">centos</span><span class="p">,</span> <span class="n">redhat</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;httpd&quot;</span> <span class="p">}</span>
+      <span class="n">debian</span><span class="p">,</span> <span class="n">ubuntu</span><span class="p">:</span> <span class="p">{</span> <span class="vg">$apache</span> <span class="o">=</span> <span class="s2">&quot;apache2&quot;</span> <span class="p">}</span>
+      <span class="n">default</span><span class="p">:</span> <span class="p">{</span> <span class="nb">fail</span><span class="p">(</span><span class="s2">&quot;Unrecognized operating system for webserver&quot;</span><span class="p">)</span> <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<h3 id="selectors">Selectors</h3>
+
+<p>Selectors might be less familiar; they&rsquo;re kind of like the <a href="http://en.wikipedia.org/wiki/%3F:">ternary operator</a>, and kind of like the case statement. </p>
+
+<p>Instead of choosing between a set of code blocks, selectors choose between a group of possible values. You can&rsquo;t use them on their own; instead, they&rsquo;re usually used to assign a variable. </p>
+
+<div class="highlight"><pre><code class="ruby">    <span class="vg">$apache</span> <span class="o">=</span> <span class="vg">$operatingsystem</span> <span class="p">?</span> <span class="p">{</span>
+      <span class="n">centos</span>                <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span>
+      <span class="n">redhat</span>                <span class="o">=&gt;</span> <span class="s1">&#39;httpd&#39;</span><span class="p">,</span><span class="sr" />
+<span class="sr">      /(?i)(ubuntu|debian)/</span> <span class="o">=&gt;</span> <span class="s2">&quot;apache2-$1&quot;</span><span class="p">,</span>
+        <span class="c1"># (Don&#39;t actually use that package name.)</span>
+      <span class="n">default</span>               <span class="o">=&gt;</span> <span class="k">undef</span><span class="p">,</span>
+    <span class="p">}</span>
+</code></pre>
+</div>
+
+<p>Careful of the syntax, there: it looks kind of like we&rsquo;re saying <code>$apache = $operatingsystem</code>, but we&rsquo;re not. The question mark flags <code>$operatingsystem</code> as the pivot of a selector, and the actual value that gets assigned is determined by which option <code>$operatingsystem</code> matches. Also note how the syntax differs from the case syntax: it uses hash rockets and line-end commas instead of colons and blocks, and you can&rsquo;t use lists of values in a match. (If you want to match against a list, you have to fake it with a regular expression.)</p>
+
+<p>It can look a little awkward, but there are plenty of situations where it&rsquo;s the most concise way to get a value sorted out; if you&rsquo;re ever not comfortable with it, you can just use a case statement to assign the variable instead. </p>
+
+<p>Selectors can also be used directly as values for a resource attribute, but try not to do that, because it gets ugly fast. </p>
+
+<h2 id="exercises">Exercises</h2>
+
+<blockquote>
+  <p><strong>Exercise:</strong> Use the $operatingsystem fact to write a manifest that installs a build environment on Debian-based (&ldquo;debian&rdquo; and &ldquo;ubuntu&rdquo;) and Enterprise Linux-based (&ldquo;centos,&rdquo; &ldquo;redhat&rdquo;) machines. (Both types of system require the <code>gcc</code> package, but Debian-type systems also require <code>build-essential</code>.)</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>Exercise:</strong> Write a manifest that installs and configures NTP for Debian-based and Enterprise Linux-based Linux systems. This will be a package/file/service pattern where you&rsquo;ll be shipping different config files (<a href="./files/ntp.conf.debian">Debian version</a>, <a href="./files/ntp.conf.el">Red Hat version</a> &mdash; remember the <code>file</code> type&rsquo;s &ldquo;source&rdquo; attribute) and using different service names (<code>ntp</code> and <code>ntpd</code>, respectively).</p>
+
+  <p>(Use a second manifest to disable the NTP service after you&rsquo;ve gotten this example working; NTP can behave kind of uselessly in a virtual machine.) </p>
+</blockquote>
+
+<h2 id="next">Next</h2>
+
+<p>Now that your manifests can adapt to different kinds of systems, it&rsquo;s time to start grouping resources and conditionals into meaningful units. Onward to <a href="./modules1.html">classes, defined resource types, and modules</a>!</p>
+<div class="footnotes">
+  <ol>
+    <li id="fn:dynamic">
+      <p>It&rsquo;s actually a little more complicated than that, but don&rsquo;t worry about it for now. You can <a href="/guides/scope_and_puppet.html">read up on it</a> later.<a href="#fnref:dynamic" rev="footnote">&#8617;</a></p>
+    </li>
+    <li id="fn:declarative">
+      <p>This has to do with the declarative nature of the Puppet language: the idea is that the order in which you read the file shouldn&rsquo;t matter, so changing a value halfway through is illegal, since it would make the results order-dependent. <br /><br />In practice, this isn&rsquo;t the full story, because you can&rsquo;t currently read a variable from anywhere north of its assignment. We&rsquo;re working on that.<a href="#fnref:declarative" rev="footnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+            </div>
+            <div class="secondary-content">
+                  <div id="subCol">
+                  
+                  
+                      <h3 class="chapter">Contents</h3>
+                      
+<ol class="toc">
+  <li class="toc-lv2"><a href="#variables">Variables</a></li>
+  <li class="toc-lv2"><a href="#facts">Facts</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#hostname-ipaddress">Hostname? IPaddress?</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#conditional-statements">Conditional Statements</a>
+<ol class="toc">
+   <li class="toc-lv3"><a href="#if">If</a></li>
+   <li class="toc-lv3"><a href="#case">Case</a></li>
+   <li class="toc-lv3"><a href="#selectors">Selectors</a></li>
+</ol></li>
+  <li class="toc-lv2"><a href="#exercises">Exercises</a></li>
+  <li class="toc-lv2"><a href="#next">Next</a></li>
+</ol>
+                  
+                                        <!-- New Ads are inserted here -->
+		  			<div id="bannerImage" style="display:block;">&nbsp;</div>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+		<footer id="footer">
+      <div class="site-width">
+
+        <div class="primary-secondary-content">
+          <div class="primary-content">
+            <section id="newsletter">
+                 <h4>Puppet Labs is Hiring</h4>
+                 <p><a href="http://www.puppetlabs.com/company/jobs/">Engineers, developers & consultants</a>
+                  <p>  
+		<h4>Newsletter</h4>
+
+              <p>Stay up to date on all things puppet</p>
+              
+				<form class="lpeRegForm formNotEmpty" method="post" enctype="application/x-www-form-urlencoded" action="http://info.puppetlabs.com/index.php/leadCapture/save"; id="mktForm_1013" name="mktForm_1013">
+				
+				<label>Email Address:</label><span class='mktInput'><input class='mktFormText mktFormEmail' name="Email" id="Email" type='text' value="" maxlength='255'  /><span class='mktFormMsg'></span></span>
+				
+				<input id='mktFrmSubmit' type='submit' class='btn' style="width: auto; overflow: visible; padding-left: .25em; padding-right: .25em;" value='Subscribe' name='submitButton' onclick='formSubmit(document.getElementById("mktForm_1013")); return false;' />
+				
+				<input style='display: none;' id='mktFrmReset' type='reset' value='Clear' name='resetButton' onclick='formReset(document.getElementById("mktForm_1013")); return false;' />
+	
+				<span style="display:none;"><input type="text" name="_marketo_comments" value="" /></span>
+				<input type="hidden" name="lpId" value="-1" />
+				<input type="hidden" name="subId" value="100" />
+
+				<input type="hidden" name="kw" value="" />
+				<input type="hidden" name="cr" value="" />
+				
+				<input type="hidden" name="searchstr" value="" />
+				<input type="hidden" name="lpurl" value="http://info.puppetlabs.com/testsubscription.html?cr={creative}&kw={keyword}"; />
+				<input type="hidden" name="formid" value="1013" />
+				<input type="hidden" name="returnURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="retURL" value="http://www.puppetlabs.com/misc/subscription-thank-you/"; />
+				<input type="hidden" name="_mkt_disp" value="return" />
+				<input type="hidden" name="_mkt_trk" value="" />
+
+				</form>
+				<script type="text/javascript" src="http://info.puppetlabs.com/js/mktFormSupport.js"></script>
+				
+				<script type="text/javascript">
+				function formSubmit(elt) {
+				return Mkto.formSubmit(elt);
+				}
+				function formReset(elt) {
+				return Mkto.formReset(elt);
+				}
+				</script>
+              
+<a href="http://info.puppetlabs.com/puppet-enterprise" class="fbtn">Try Puppet Enterprise FREE</a>
+
+            </section>
+            <section id="elsewhere">
+              <h4>Get Involved</h4>
+              <ul>
+
+                <li class="chat"><a href="http://webchat.freenode.net/?channels=puppet" rel="external"><span class="indicator"></span><span>Chat with us on IRC</span></a></li>
+		<li class="discussion"><a href="http://groups.google.com/group/puppet-dev" rel="external"><span class="indicator"></span><span>Join the Puppet Developer List</span></a></li>
+                <li class="discussion"><a href="http://groups.google.com/group/puppet-users?pli=1" rel="external"><span class="indicator"></span><span>Join the Puppet User List</span></a></li>
+                
+                <li class="linkedin"><a href="http://www.linkedin.com/groups?about=&gid=696467&trk=anet_ug_grppro" rel="external"><span class="indicator"></span><span>Join the Puppet Users LinkedIn group</span></a></li>	
+
+              </ul>
+		<p>
+		              		<h4>Follow us&#8230;</h4>
+
+              		<ul class="followus">
+
+					
+			<li><a href="http://feeds.feedburner.com/PuppetLabs" target="_blank"><img src="http://www.puppetlabs.com/wp-content/plugins/my-profiles/images/rss.png" border="0"></a></li>
+			<li><a href="http://www.facebook.com/pages/Puppet-Labs/219089920711" target="_blank"><img src="http://www.puppetlabs.com//wp-content/plugins/my-profiles/images/facebook.png" border="0"></a></li>
+			<li><a href="http://www.twitter.com/puppetlabs" target="_blank"><img src="http://www.puppetlabs.com//wp-content/plugins/my-profiles/images/twitter.png" border="0"></a></li>
+			<li><a href="http://www.linkedin.com/groups?about=&amp;gid=696467&amp;trk=anet_ug_grppro" target="_blank"><img src="http://www.puppetlabs.com//wp-content/uploads/2011/01/LinkedIn_IN_Icon_32px.png" border="0"></a></li>    <li><a href="https://github.com/puppetlabs" target="_blank"><img src="http://www.puppetlabs.com//wp-content/uploads/2011/01/github_icon.png" border="0"></a></li>
+					</ul>
+
+              	</p>
+
+            </section>
+          </div>
+          <div class="secondary-content">
+            <section id="book-it">
+              <h4>Get the book!</h4>
+
+              <p>Written by James Turnbull and Jeff McCune, <a href="http://www.apress.com/9781430230571" rel="nofollow">Pro Puppet</a> is a comprehensive and up-to-date look at Puppet and MCollective. </p>
+              <a href="http://www.apress.com/9781430230571" rel="nofollow"><img src="http://www.puppetlabs.com/wp-content/uploads/2011/05/propuppetthumb.png" /></a>
+            </section>
+          </div>
+        </div>
+      </div>
+		</footer>
+
+    <div id="copyright">
+      <div class="site-width">
+        &copy; 2011 <a href="http://www.puppetlabs.com/" title="Puppet Labs">Puppet Labs</a>
+        <span class="vcard">
+         <span class="org"></span>
+         <a class="email" href="mailto:info@puppetlabs.com">info@puppetlabs.com</a>
+
+          <span class="adr">
+           <span class="street-address">411 NW Park Avenue</span>
+           /
+           <span class="locality">Portland</span>, 
+           <span class="region">OR</span>
+           <span class="postal-code">97209</span>
+
+          </span>
+
+         <span class="tel">1-877-575-9775</span>
+        </span>          
+      </div>
+    </div>
+    <script src="http://munchkin.marketo.net/munchkin.js" type="text/javascript"></script> <script>mktoMunchkin("307-QLA-991");</script> 
+    
+  	<script type="text/javascript">Cufon.now();</script>
+  	<style type="text/css">h1, h2, .btn { visibility : visible; }</style>
+
+	</body>
+</html>        
