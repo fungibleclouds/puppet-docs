@@ -59,8 +59,9 @@ centos5_64.box is a CentOS 5.5 64 bit vagrant box with Puppet 2.6.6 installed an
 
 <pre>
 $ gem install vagrant
-$ vagrant box add puppet-centos-55-64 http://puppetlabs.s3.amazonaws.com/pub/centos5_64.box
-$ vagrant init puppet-centos-55-64
+$ vagrant box add puppet-centos http://puppetlabs.s3.amazonaws.com/pub/centos5_64.box
+$ mkdir puppet-centos; cd puppet-centos
+# vagrant init puppet-centos
 $ vagrant up
 </pre>
 
